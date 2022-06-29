@@ -1,10 +1,9 @@
-import { useState, useContext } from "react";
+import { useState } from "react";
 
 import FormInput from "../form-input/form-input";
 import Button from "../button/button";
 
 import "./signin-form.styles.scss";
-import { UserContext } from "../../contexts/user.context";
 
 import {
   signInWithGooglePopup,
@@ -19,8 +18,6 @@ const defaultProps = {
 const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultProps);
   const { email, password } = formFields;
-
-  useContext(UserContext);
 
   const logGoogleUser = async () => {
     await signInWithGooglePopup();
