@@ -8,7 +8,6 @@ import { UserContext } from "../../contexts/user.context";
 
 import {
   signInWithGooglePopup,
-  createUserDocFromAuth,
   signInAuthUserFromEmailAndPassword,
 } from "../../utils/firebase/firebase";
 
@@ -21,12 +20,10 @@ const SignInForm = () => {
   const [formFields, setFormFields] = useState(defaultProps);
   const { email, password } = formFields;
 
-  const { setCurrentUser } = useContext(UserContext);
+  useContext(UserContext);
 
   const logGoogleUser = async () => {
-    const { user } = await signInWithGooglePopup();
-    const userDocRef = await createUserDocFromAuth(user);
-    console.log(userDocRef);
+    await signInWithGooglePopup();
   };
 
   const resetFields = () => {
@@ -37,11 +34,7 @@ const SignInForm = () => {
     event.preventDefault();
 
     try {
-      const { user } = await signInAuthUserFromEmailAndPassword(
-        email,
-        password
-      );
-      setCurrentUser(user);
+      await signInAuthUserFromEmailAndPassword(email, password);
 
       resetFields();
     } catch (error) {
