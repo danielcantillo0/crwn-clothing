@@ -45,6 +45,7 @@ const Nav = () => {
         </NavLinks>
         {isCartOpen && <CartDropdown />}
       </NavigationContainer>
+      <h2>CRWN CLOTHES</h2>
       <Outlet />
     </Fragment>
   );
