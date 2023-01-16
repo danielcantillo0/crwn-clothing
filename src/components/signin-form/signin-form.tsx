@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, FormEvent, ChangeEvent } from "react";
 import { useDispatch } from "react-redux";
 
 import FormInput from "../form-input/form-input";
@@ -28,7 +28,7 @@ const SignInForm = () => {
     setFormFields(defaultProps);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     try {
@@ -36,21 +36,11 @@ const SignInForm = () => {
 
       resetFields();
     } catch (error) {
-      switch (error.code) {
-        case "auth/wrong-password":
-          alert("Incorrect Password");
-          break;
-        case "auth/user-not-found":
-          alert("Email not registered");
-          break;
-        default:
-          console.log(error);
-          break;
-      }
+      console.log(error);
     }
   };
 
-  const handleChange = (event) => {
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
 
     setFormFields({ ...formFields, [name]: value });

@@ -82,7 +82,7 @@ export const getCategoriesAndDocuments = async (): Promise<Category[]> => {
 };
 
 export type AdditionalInfo = {
-  displayname?: string;
+  displayName?: string;
 };
 
 export type UserData = {
